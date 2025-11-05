@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Idle Miner — Demo</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Meta for privacy -->
+  <meta name="description" content="Prosty idle clicker. Zbieraj monety, kup ulepszenia.">
+</head>
+<body>
+  <header>
+    <h1>Idle Miner</h1>
+    <a href="privacy.html" class="privacy-link">Polityka prywatności</a>
+  </header>
+
+  <main>
+    <section class="game">
+      <div class="score-panel">
+        <div>Monety: <span id="coins">0</span></div>
+        <div>Za sekundę: <span id="cps">0</span></div>
+      </div>
+
+      <button id="mineBtn" class="mine-btn">KOP!</button>
+
+      <div class="upgrades">
+        <h3>Ulepszenia</h3>
+        <div class="upgrade" data-cost="10" data-cps="0.1">
+          <div class="u-name">Łopata</div>
+          <div>Koszt: <span class="cost">10</span></div>
+          <button class="buy">Kup</button>
+        </div>
+        <div class="upgrade" data-cost="100" data-cps="1">
+          <div class="u-name">Koparka</div>
+          <div>Koszt: <span class="cost">100</span></div>
+          <button class="buy">Kup</button>
+        </div>
+        <div class="upgrade" data-cost="1000" data-cps="10">
+          <div class="u-name">Frachtowiec</div>
+          <div>Koszt: <span class="cost">1000</span></div>
+          <button class="buy">Kup</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- miejsce na reklamę — zostanie wypełnione po zgodzie -->
+    <aside id="ad-area">
+      <!-- Wklej kod AdSense tutaj po aktywacji konta -->
+      <!-- PRZYKŁAD: <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="YYYYYYYY" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script> -->
+    </aside>
+  </main>
+
+  <!-- banner zgody -->
+  <div id="consent-banner" class="consent-banner hidden">
+    Ta strona używa reklam. Zaznacz aby wyrazić zgodę na reklamy.
+    <button id="accept-consent">Akceptuję</button>
+    <button id="decline-consent">Odrzuć</button>
+  </div>
+
+  <footer>
+    <small>© Idle Miner — demo</small>
+  </footer>
+
+  <script src="game.js"></script>
+</body>
+</html>
