@@ -1,32 +1,112 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Moja strona z reklamami AdSense</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Idle Miner — Demo</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Prosty idle clicker. Zbieraj monety, kup ulepszenia.">
 
-    <!-- Skrypt Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6942076235976437"
-        crossorigin="anonymous"></script>
+  <!-- Skrypt AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6942076235976437"
+     crossorigin="anonymous"></script>
+
 </head>
 <body>
 
-    <h1>Witaj na mojej stronie</h1>
-    <p>Tu jest przykładowa zawartość strony.</p>
+  <!-- Banner zgody -->
+  <div id="consent-banner" class="consent-banner">
+    Ta strona używa reklam. Zaznacz aby wyrazić zgodę na reklamy.
+    <button id="accept-consent">Akceptuję</button>
+    <button id="decline-consent">Odrzuć</button>
+  </div>
 
-    <!-- REKLAMA GOOGLE ADSENSE -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-6942076235976437"
-         data-ad-slot="2005514135"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+  <header>
+    <h1>Idle Miner</h1>
+    <a href="privacy.html" class="privacy-link">Polityka prywatności</a>
+  </header>
 
-    <p>Inne elementy Twojej strony...</p>
+  <main>
+    <section class="game">
+      <div class="score-panel">
+        <div>Monety: <span id="coins">0</span></div>
+        <div>Za sekundę: <span id="cps">0</span></div>
+      </div>
+
+      <button id="mineBtn" class="mine-btn">KOP!</button>
+
+      <div class="upgrades">
+        <h3>Ulepszenia</h3>
+        <div class="upgrade" data-cost="10" data-cps="0.1">
+          <div class="u-name">Łopata</div>
+          <div>Koszt: <span class="cost">10</span></div>
+          <button class="buy">Kup</button>
+        </div>
+        <div class="upgrade" data-cost="100" data-cps="1">
+          <div class="u-name">Koparka</div>
+          <div>Koszt: <span class="cost">100</span></div>
+          <button class="buy">Kup</button>
+        </div>
+        <div class="upgrade" data-cost="1000" data-cps="10">
+          <div class="u-name">Frachtowiec</div>
+          <div>Koszt: <span class="cost">1000</span></div>
+          <button class="buy">Kup</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Miejsce na reklamy AdSense -->
+    <div id="ad-container" style="margin-top: 20px; text-align:center;">
+      <!-- reklama zostanie wstawiona dynamicznie po akceptacji -->
+    </div>
+
+  </main>
+
+  <footer>
+    <small>© Idle Miner — demo</small>
+  </footer>
+
+  <script src="game.js"></script>
+
+  <!-- Skrypt obsługi zgody i dynamicznego ładowania reklamy -->
+  <script>
+    const consentBanner = document.getElementById('consent-banner');
+    const adContainer = document.getElementById('ad-container');
+    const acceptBtn = document.getElementById('accept-consent');
+    const declineBtn = document.getElementById('decline-consent');
+
+    // Sprawdź lokalnie, czy użytkownik już zgodził się wcześniej
+    const consent = localStorage.getItem('adsConsent');
+    if (consent === 'yes') {
+      loadAd();
+      consentBanner.style.display = 'none';
+    }
+
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('adsConsent', 'yes');
+      consentBanner.style.display = 'none';
+      loadAd();
+    });
+
+    declineBtn.addEventListener('click', () => {
+      localStorage.setItem('adsConsent', 'no');
+      consentBanner.style.display = 'none';
+    });
+
+    function loadAd() {
+      adContainer.innerHTML = `
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-6942076235976437"
+             data-ad-slot="2005514135"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        <\/script>
+      `;
+    }
+  </script>
 
 </body>
 </html>
-
